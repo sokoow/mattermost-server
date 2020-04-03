@@ -629,10 +629,11 @@ func (a *App) UploadFileX(channelId, name string, input io.Reader,
 		}()
 	}
 
-	_, aerr = t.writeFile(t.newReader(), t.fileinfo.Path)
+	n, aerr := t.writeFile(t.newReader(), t.fileinfo.Path)
 	if aerr != nil {
 		return nil, aerr
 	}
+	mlog.Info("Bytes written", mlog.String("path", t.fileinfo.Path), mlog.Int("bytes", int(n)))
 
 	if _, err := t.saveToDatabase(t.fileinfo); err != nil {
 		return nil, err
