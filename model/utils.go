@@ -184,7 +184,7 @@ func PadDateStringZeros(dateString string) string {
 			parts[index] = "0" + part
 		}
 	}
-	dateString = strings.Join(parts[:], "-")
+	dateString = strings.Join(parts, "-")
 	return dateString
 }
 
